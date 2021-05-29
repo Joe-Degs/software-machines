@@ -15,28 +15,28 @@ There are few models of memory around. Most i have not heard of before. One
 i actually know is the Von-Neumann memory model but turns out there is a whole
 lot more of memory. The basic function of the memory is storing data and
 instructions.
-- Von Neumannn model
+- *Von Neumannn model*:
 This one is just like an array. One big contigous chunk of addressable space,
 separated/partitioned so we have different parts of the chunk for stack, heap
 anbd the rest. The basic one everybody who hasnt taken a computer science course
 on the subject knows about. 
-- Harvard model
+- *Harvard model*:
 Separate ROM and RAM, this means instructions and data are not stored in the
 same contigous chunk of memory. This potentially prevents buffer overruns
 attacks. so code will be stored in the ROM and data in the RAM.
-- Forth model
+- *Forth model*:
 Complex model with two diffent stacks, not really a standard heap but some
 lookup map. And some other complicated details
-- Hybrid model
-This one is combines both forth and von neumann model to create a more
-complicated model that have probably more than two stacks.
+- *Hybrid model*:
+This one combines both forth and von neumann model to create a more
+complicated model that probably has more than two stacks.
 #### Heap
 - the heap is word aligned, byte addressable chunk of contigous memory. It is
   basically the same accross all the memory models. And the implementation is go
 might not be that different the implementation in c
 #### Stack
 - The stack is a slightly different beast, depending on the memory model, it
-  might be trivial to implement. The implementation will be off the type linux
+  might be trivial to implement. The implementation will be of the type linux
 processes use.
 - There are a few types of stacks. We have the `spaghetti/cactus stack` and the
   `array stack`(regular linux process stack)
@@ -45,3 +45,16 @@ processes use.
 - Whereas the array stack is just one contigous chunk, the cactus/spaghetti
   stack is list of memory cells linked together, basically a linked list. It is
 a functional data type especially if you make it immutable.
+#### Maps
+- maps are basically just key value pairs. This is the holy grail of
+  datastructures. If you in the computer programming business, every turn you
+take you will hear somebody talking about hash maps, lookup tables, hash tables
+etc which are all maps. In distributed computing we have consistent hashing
+algorithms which use maps too. So yeah its a great deal for me, finally getting
+to play with map implementations is a great deal for me.
+- *Implementation Details*:
+There are three basic aspects to maps.
+1. where the (key, value) pairs are stored. __associative arrays__
+2. a way to search for (key, value) pairs. __search algorithm__
+3. a map interface to be able to *set* and *get* (key, value) pairs easily.
+   __buckets__
