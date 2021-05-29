@@ -11,28 +11,28 @@ about it. So i'm testing the c code too.
 Lets start with the components of computer machines;
 
 ### Memory(Heap and Stack)
-There are few models of memory around. Most i have not heard of before. One
-i actually know is the Von-Neumann memory model but turns out there is a whole
-lot more of memory. The basic function of the memory is storing data and
-instructions.
-- *Von Neumannn model*:
+There are few models of memory around. Most, i have not heard of before. One
+i actually know is the Von-Neumann memory model but, turns out there is a bunch
+of models around. The basic function of the memory is storing data and
+instructions. It is sometimes used for protection too.
+- __Von Neumannn model__:
 This one is just like an array. One big contigous chunk of addressable space,
 separated/partitioned so we have different parts of the chunk for stack, heap
 anbd the rest. The basic one everybody who hasnt taken a computer science course
 on the subject knows about. 
-- *Harvard model*:
+- __Harvard model__:
 Separate ROM and RAM, this means instructions and data are not stored in the
 same contigous chunk of memory. This potentially prevents buffer overruns
 attacks. so code will be stored in the ROM and data in the RAM.
-- *Forth model*:
+- __Forth model__:
 Complex model with two diffent stacks, not really a standard heap but some
 lookup map. And some other complicated details
-- *Hybrid model*:
+- __Hybrid model__:
 This one combines both forth and von neumann model to create a more
 complicated model that probably has more than two stacks.
 #### Heap
 - the heap is word aligned, byte addressable chunk of contigous memory. It is
-  basically the same accross all the memory models. And the implementation is go
+  basically the same accross all the memory models. And the implementation in go
 might not be that different the implementation in c
 #### Stack
 - The stack is a slightly different beast, depending on the memory model, it
@@ -40,7 +40,7 @@ might not be that different the implementation in c
 processes use.
 - There are a few types of stacks. We have the `spaghetti/cactus stack` and the
   `array stack`(regular linux process stack)
-- The stack is fixed array of memory, can be grown and shrinked and has
+- The stack is a fixed array of memory, can be grown and shrinked and has
   a program counter that is an offset into the array.
 - Whereas the array stack is just one contigous chunk, the cactus/spaghetti
   stack is list of memory cells linked together, basically a linked list. It is
@@ -52,9 +52,10 @@ take you will hear somebody talking about hash maps, lookup tables, hash tables
 etc which are all maps. In distributed computing we have consistent hashing
 algorithms which use maps too. So yeah its a great deal for me, finally getting
 to play with map implementations is a great deal for me.
-- *Implementation Details*:
+- __Implementation Details__:
 There are three basic aspects to maps.
-1. where the (key, value) pairs are stored. __associative arrays__
-2. a way to search for (key, value) pairs. __search algorithm__
-3. a map interface to be able to *set* and *get* (key, value) pairs easily.
-   __buckets__
+1. where the (key, value) pairs are stored. this can be done using __associative arrays__
+2. a way to search for (key, value) pairs.basically i nice search algorithm will
+   do
+3. a map interface to be able to *set* and *get* (key, value) pairs easily. most
+   people use __buckets__
