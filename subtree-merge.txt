@@ -1,0 +1,20 @@
+/* 
+   I was looking for a way to add another local repo as a subdirectory to this
+   repo. Got a little stressed by the amount of info on stack overflow.
+   i got one that worked for me using the git subtree command.
+
+  so i'm keeping this here for if i ever need it again.
+
+  lets say we want to add project_b as subdir in project_a
+*/
+
+
+cd <project_a>
+git remote add -f <b_remote> <path/to/project_b>
+git merge -s ours (--allow-unrelated-histories) --no-commit b_remote/master
+git read-tree --prefix=<project_b/> b_remote/master
+git commit -m "Merge project_b as subdirectory in project_a"
+git pull -s subtree b_remote master
+
+
+/* NOTE: the options in () is used only on git --verion >= 2.9 */
