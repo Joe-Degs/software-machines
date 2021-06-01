@@ -1,0 +1,4 @@
+ Some of the things i want to do are
+
+1. do some matrix addition and subtraction
+2. vectors and all that to flex muscles in handling arrays in c
