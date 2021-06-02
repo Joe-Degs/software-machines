@@ -134,9 +134,22 @@ func (m *Map) Set(key string, value interface{}) {
 
 // TODO(Joe-Degs):
 // implement Delete method for the map
+func (m *Map) Delete(key string) {
+	b := m.getBucket(key)
+	a := m.chain[b]
+	s := find(a, key)
+	if s.value != nil {
+		if s.memo != nil && s.cursor != nil {
+			s.memo.next = s.cursor.next
+		} else if s.cursor != nil {
+			s.cursor = s.cursor.next
+			m.chain[b] = s.cursor
+		}
+	}
+}
 
 func main() {
-	m := newMap(10)
+	m := newMap(2)
 
 	m.Set("Joe", "Jollof")
 	m.Set("hello", "world")
@@ -144,6 +157,11 @@ func main() {
 	m.Set("func", func(s string) {
 		fmt.Println(s)
 	})
+	m.Set("goat", struct{ s string }{s: "hahaahahahah"})
+	m.Delete("hello")
+	fmt.Println(m.Get("goat"))
+	m.Delete("goat")
+	fmt.Println(m.Get("goat"))
 
 	fmt.Println(m.Get("Joe"))
 	fmt.Println(m.Get("hello"))
