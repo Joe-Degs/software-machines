@@ -136,8 +136,7 @@ func (m *Map) Set(key string, value interface{}) {
 // implement Delete method for the map
 func (m *Map) Delete(key string) {
 	b := m.getBucket(key)
-	a := m.chain[b]
-	s := find(a, key)
+	s := find(m.chain[b], key)
 	if s.value != nil {
 		if s.memo != nil && s.cursor != nil {
 			s.memo.next = s.cursor.next
